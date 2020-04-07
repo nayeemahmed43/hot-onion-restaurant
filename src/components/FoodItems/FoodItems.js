@@ -1,15 +1,31 @@
-import React, { useState } from 'react';
-import foodInfo from '../../fakeData/foodInfo';
+import React, { useState, useEffect } from 'react';
+import logo2 from '../../fakeData/logo2.png';
+import path1 from '../../fakeData/ICON/Path 1.png';
+import bannerbackground from '../../fakeData/bannerbackground.png'
 import  './FoodItems.css';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../Login/useAuth';
 
 const FoodItems = () => {
-    const [food,setFood] = useState(foodInfo.filter(i=>i.category === 'lunch'))
+    const auth = useAuth();
+    const [products,setProducts] = useState([]);
+    
+    useEffect(() =>{
+        fetch('http://localhost:4200/foods')
+        .then(res => res.json())
+        .then(data => {
+            console.log('data from database',data)
+            setProducts(data);
+        })
+    },[])
 
+        
+    const foodInfo = products;
+        const [food,setFood] = useState(foodInfo.filter(i=>i.category === 'lunch'));
+        
     const breakfastHandler = () => {
         const breakfast = foodInfo.filter(i=>i.category === 'breakfast');
         setFood([...breakfast]);
-
     }
     const lunchHandler = () => {
         const lunch = foodInfo.filter(i=>i.category === 'lunch');
@@ -17,12 +33,27 @@ const FoodItems = () => {
     }
     const dinnerHandler = () => {
         const dinner = foodInfo.filter(i=>i.category === 'dinner');
-        setFood([...dinner]);
-        
+        setFood([...dinner]);      
     }
-   
+
     return (
         <div className="container">
+
+            <nav className="navbar navbar-light bg-light">
+                <img src={logo2} width="200" className="d-inline-block align-top" alt="" />
+
+                <div className="nav">
+                    <img src={path1} alt=""/>
+                    {auth.user ? <button onClick={auth.signOut}>log out</button> : <Link to="/login"><button>log in</button></Link> } 
+                    <button id="signupButton">Sign up</button>
+                </div>
+            </nav>
+            
+            <div>
+                <img id="banner" src={bannerbackground} alt=""/>
+            </div>
+            
+
             <div className="d-flex justify-content-center">
                 <button onClick={breakfastHandler} className="btn btn-secondary"><b>Breakfast</b></button>
                 <button onClick={lunchHandler} className="btn btn-secondary active" aria-pressed="true"><b>Lunch</b></button>
@@ -43,14 +74,14 @@ const FoodItems = () => {
                                 <h5 className="card-title">{item.name}</h5>
                                 <p className="card-text">{item.title}</p>
                                 <h3 className="card-text">$ {item.price}</h3>
-                                <Link to="/singlefooditem">
-                                    <button className="btn btn-info">Order</button>
+                                <Link to={"/singlefooditem/"+ item.id}>
+                                    <button className="btn btn-info">Details</button>
                                 </Link>
                             </div>
                         </div>
-                    ))}
+                    )) }
             </div>
         </div>   
-    )};
+    ) };
 
 export default FoodItems;
