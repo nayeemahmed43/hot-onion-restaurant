@@ -11,7 +11,7 @@ const FoodItems = () => {
     const [products,setProducts] = useState([]);
     
     useEffect(() =>{
-        fetch('http://localhost:4200/foods')
+        fetch('https://arcane-ocean-37462.herokuapp.com/foods')
         .then(res => res.json())
         .then(data => {
             console.log('data from database',data)

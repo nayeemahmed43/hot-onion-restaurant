@@ -25,7 +25,7 @@ const Shipment = () => {
     
     const handlePlaceOrder = (payment) =>{
       const orderDetail = {email:auth.user.email, cart: cartData.product, shipment: shipInfo, payment: payment};
-      fetch('http://localhost:4200/placeOrder',{
+      fetch('https://arcane-ocean-37462.herokuapp.com/placeOrder',{
         method: 'POST',
         headers:{
             'Content-Type': 'application/json'

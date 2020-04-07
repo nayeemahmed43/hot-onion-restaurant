@@ -9,7 +9,7 @@ import './SingleFoodItem.css';
 const SingleFoodItem = () => {
     const [product,setProduct] = useState(null);
     useEffect(() => {
-        fetch('http://localhost:4200/singlefooditem/'+key)
+        fetch('https://arcane-ocean-37462.herokuapp.com/singlefooditem/'+key)
         .then(res => res.json())
         .then(data => {
             setProduct(data)
