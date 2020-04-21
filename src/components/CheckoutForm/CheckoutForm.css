@@ -1,0 +1,6 @@
+#payment-button{
+    width: 100px;
+    border-radius: 5px;
+    background-image: linear-gradient(45deg,rgb(20, 190, 128),#63EA82);
+    border:0
+}

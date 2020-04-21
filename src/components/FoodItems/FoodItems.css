@@ -5,14 +5,32 @@ button{
 .d-flex{
     margin: 20px;
 }
-.nav button{
+.logButton{
     border-radius: 10px;
     margin: 5px;
+    border:0;
+    background-color: wheat;
+
+}
+
+.logButton:focus,#signupButton:focus{
+    outline:none;   
+    
 }
 #signupButton{
     background-color: rgb(207, 63, 111);
     color: white;
+    border-radius: 10px;
+    border:0;
 }
 #banner{
     width: 100%;
+}
+.row img{
+    border: none;
+}
+
+.card{
+    border: none;
+    margin-bottom: 50px;
 }

@@ -9,6 +9,8 @@ import { useAuth } from '../Login/useAuth';
 const FoodItems = () => {
     const auth = useAuth();
     const [products,setProducts] = useState([]);
+    const [food,setFood] = useState([]);
+    const foodInfo = products;
     
     useEffect(() =>{
         fetch('https://arcane-ocean-37462.herokuapp.com/foods')
@@ -16,12 +18,11 @@ const FoodItems = () => {
         .then(data => {
             console.log('data from database',data)
             setProducts(data);
+            setFood(data.filter(i => i.category === 'lunch'))
         })
     },[])
 
         
-    const foodInfo = products;
-        const [food,setFood] = useState(foodInfo.filter(i=>i.category === 'lunch'));
         
     const breakfastHandler = () => {
         const breakfast = foodInfo.filter(i=>i.category === 'breakfast');
@@ -44,7 +45,7 @@ const FoodItems = () => {
 
                 <div className="nav">
                     <img src={path1} alt=""/>
-                    {auth.user ? <button onClick={auth.signOut}>log out</button> : <Link to="/login"><button>log in</button></Link> } 
+                    {auth.user ? <button className="logButton" onClick={auth.signOut}>log out</button> :  <Link to="/login"><button className="logButton">log in</button></Link> }  
                     <button id="signupButton">Sign up</button>
                 </div>
             </nav>
@@ -62,10 +63,10 @@ const FoodItems = () => {
 
             <div className="row">
                 
-                {food.map((item, i) => (
+                {food.length !==0 ? food.map((item, i) => (
                         <div className="card col-md-4" key={i}>
                             <img 
-                                    style={{height: "200px", width: 'auto'}} 
+                                    style={{height: "250px", width: 'auto'}} 
                                     className="img-thumbnail"
                                     src={item.image} 
                                     alt={item.name} 
@@ -79,7 +80,7 @@ const FoodItems = () => {
                                 </Link>
                             </div>
                         </div>
-                    )) }
+                    )) : <h3 style={{margin:"auto"}}>Loading...</h3>}
             </div>
         </div>   
     ) };

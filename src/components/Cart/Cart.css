@@ -1,0 +1,10 @@
+.cart{
+    text-align: right;
+    border: 5px solid #F08080;
+    border-radius: 10px;
+    width: 300px;
+    margin: auto;
+    margin-top: 20px;
+    background-color: #F08080;
+    color: whitesmoke;
+}

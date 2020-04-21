@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import  './CheckoutForm.css';
 import {
   CardElement,
   useStripe,
@@ -31,7 +32,7 @@ const CheckoutForm = (props) => {
   return (
     <form onSubmit={handleSubmit}>
       <CardElement />
-      <button type="submit" disabled={!stripe}>
+      <button id="payment-button" type="submit" disabled={!stripe}>
         Pay
       </button>
       {

@@ -2,7 +2,7 @@ import React from 'react';
 //import foodInfo from '../../fakeData/foodInfo';
 const Inventory = () => {
     const handleAddInventory = () => {
-        // this part is used to load data into Database from fake data file
+        // this part is used to load data into Database from fake data file(only for admin)
             // const product = foodInfo[0];
             // console.log('before post', foodInfo.length);
             // fetch('http://localhost:4200/addFood',{
