@@ -8,7 +8,7 @@ To run this locally:
 #### npm i
 #### npm start
 
-#### Deploy
+## Deploy
 This site is deployed in firebase
 
 ## Live site: https://red-onion-f490f.web.app/
